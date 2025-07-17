@@ -1,0 +1,32 @@
+services: 
+  api:
+    image: hayziechu/fastapipostgres
+    depends_on:
+      - postgres
+    ports: 
+      - '80:8000'
+      #ro = read only, container cant change file
+    # command: [ "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+    # env_file:
+    #   - ./.env
+    environment:
+    - DTB_HOSTNAME=${DTB_HOSTNAME}
+    - DTB_PORT=${DTB_PORT}
+    - DTB_PWD=${DTB_PWD}
+    - DTB_NAME=${DTB_NAME}
+    - DTB_USERNAME=${DTB_USERNAME}
+    - SECRET_KEY=${SECRET_KEY}
+    - ALGORITHM=${ALGORITHM}
+    - ACCESS_TOKEN_EXPIRE_MINUTES=${ACCESS_TOKEN_EXPIRE_MINUTES}    
+  
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_PASSWORD: ${DTB_PWD}
+      POSTGRES_DB: ${DTB_NAME}
+
+    volumes:
+      - postgres_db:/var/lib/postgresql/data
+
+volumes:
+  postgres_db:
