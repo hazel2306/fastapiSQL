@@ -76,7 +76,7 @@ def delete_post(id: int, db: Session = Depends(get_db),
                             detail=f"post with id '{id}' does not exist")
         
     if post.owner_id != current_user.id:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, 
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, 
                             detail=f'not authorized to delete post')
          
 
@@ -96,7 +96,7 @@ def update_post(id: int, post: schemas.PostCreate, db: Session = Depends(get_db)
                             detail=f"post with id '{id}' does not exist")
     
     if updated_post.owner_id != current_user.id:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, 
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, 
                             detail=f'not authorized to update post')
          
 

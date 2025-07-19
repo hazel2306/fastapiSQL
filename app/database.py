@@ -20,6 +20,7 @@ SQLALCHEMY_DATABASE_URL = f'postgresql://{settings.DTB_USERNAME}:{settings.DTB_P
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
+# connect to dtb in PgAdmin
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()

@@ -30,7 +30,6 @@ app.include_router(vote.router)
 # path operation/route
 @app.get("/")
 def root(): # async optiona;
-    print("DB URL:", database.SQLALCHEMY_DATABASE_URL)
     return {"message": "Hi new user in docker bind mount"} 
     #fastapi automatically convert into JSon
 
