@@ -1,8 +1,19 @@
 name: Build and Deploy Code
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+# run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push, pull_request]
 jobs:
   job1:
+    environment:
+      name: testing
+    env: 
+      DTB_HOSTNAME: ${{ secrets.DTB_HOSTNAME }}
+      DTB_PORT: ${{ secrets.DATABASE_PORT }}
+      DTB_PWD: ${{ secrets.DTB_PWD }}
+      DTB_NAME: ${{ secrets.DTB_NAME }}
+      DTB_USERNAME: ${{ secrets.DTB_USERNAME }}
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      ALGORITHM: ${{ secrets.ALGORITHM }}
+      ACCESS_TOKEN_EXPIRE_MINUTES: ${{ secrets.ACCESS_TOKEN_EXPIRE_MINUTES }}
     runs-on: ubuntu-latest
     steps:
       - name: pulling git repo
