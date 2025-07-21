@@ -2,7 +2,7 @@ name: Build and Deploy Code
 # run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push, pull_request]
 jobs:
-  Main-Job:
+  Build:
     environment:
       name: testing
     env: 
@@ -51,21 +51,29 @@ jobs:
           pytest
 
 
-      - name: Login to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ vars.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      # - name: Login to Docker Hub
+      #   uses: docker/login-action@v3
+      #   with:
+      #     username: ${{ vars.DOCKER_USERNAME }}
+      #     password: ${{ secrets.DOCKERHUB_TOKEN }}
       
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+      # - name: Set up Docker Buildx
+      #   uses: docker/setup-buildx-action@v3
 
-      - name: Build and push
-        uses: docker/build-push-action@v6
-        with:
-          platforms: linux/amd64,linux/arm64
-          push: true
-          tags: ${{ vars.DOCKER_USERNAME }}/fastapipostgres:latest
+      # - name: Build and push
+      #   uses: docker/build-push-action@v6
+      #   with:
+      #     platforms: linux/amd64,linux/arm64
+      #     push: true
+      #     tags: ${{ vars.DOCKER_USERNAME }}/fastapipostgres:latest
 
 
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+      # - run: echo "🍏 This job's status is ${{ job.status }}."
+
+  Deploy:
+    runs-on: ubuntu-latest
+    needs: [Build]
+
+    steps:
+      - name: deploying
+        run: echo "deployment"
