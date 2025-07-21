@@ -1,6 +1,6 @@
 name: Build and Deploy Code
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push, pull-request]
+on: [push, pull_request]
 jobs:
   job1:
     runs-on: ubuntu-latest
