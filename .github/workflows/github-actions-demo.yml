@@ -1,0 +1,13 @@
+name: Build and Deploy Code
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [push, pull-request]
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: pulling git image
+        uses: actions/checkout@v4
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - run: echo "🍏 This job's status is ${{ job.status }}."
