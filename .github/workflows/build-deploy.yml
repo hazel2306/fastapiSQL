@@ -74,6 +74,8 @@ jobs:
     name: Deploy to Render
     runs-on: ubuntu-latest
     steps:
+      - name: pulling git repo
+        uses: actions/checkout@v4
       - name: Trigger deployment
         uses: sws2apps/render-deployment@main #consider using pin for dependabot auto update
         with:

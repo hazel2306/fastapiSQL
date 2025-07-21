@@ -30,7 +30,7 @@ app.include_router(vote.router)
 # path operation/route
 @app.get("/")
 def root(): # async optiona;
-    return {"message": "Hi new user in docker bind mount"} 
+    return {"message": "Successfully deployed from CI/CD pipeline"} 
     #fastapi automatically convert into JSon
 
 
