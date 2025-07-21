@@ -14,9 +14,13 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from .config import settings
+from dotenv import load_dotenv
+import os
 
-SQLALCHEMY_DATABASE_URL = f'postgresql://{settings.DTB_USERNAME}:{settings.DTB_PWD}@{settings.DTB_HOSTNAME}/{settings.DTB_NAME}'
+load_dotenv()
+SQLALCHEMY_DATABASE_URL = os.environ.get('DATABASE_PATH')
 
+# SQLALCHEMY_DATABASE_URL = f'postgresql://{settings.DTB_USERNAME}:{settings.DTB_PWD}@{settings.DTB_HOSTNAME}/{settings.DTB_NAME}'
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
