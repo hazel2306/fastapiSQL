@@ -22,7 +22,7 @@ jobs:
         image: postgres
         # Provide the password for postgres
         env:
-          POSTGRES_PASSWORD: ${{ secrets.DDTB_PWD }}
+          POSTGRES_PASSWORD: ${{ secrets.DTB_PWD }}
           POSTGRES_DB: ${{ secrets.DTB_NAME }}_test
         ports:
           - 5432:5432
